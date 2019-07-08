@@ -1,0 +1,7 @@
+.ulClear {
+    list-style: none;
+}
+
+.ulClear li {
+    cursor: pointer;
+}
