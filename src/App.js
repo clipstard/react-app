@@ -42,6 +42,7 @@ class App extends React.Component {
     }
 
     render() {
+        const documentTitle = document.title;
         return (
                 <div className="App" style={{backgroundColor: this.state.theme.backgroundColor, color: this.state.theme.color}}>
                     <header>
@@ -50,7 +51,7 @@ class App extends React.Component {
                         <Toggle onToggleChange={this.handleToggleChange}/>
                         <br />
                         <Provider store={store}>
-                            { <ItemList />}
+                            { <ItemList documentTitle={documentTitle}/>}
                         </Provider>
                     </header>
                 </div>

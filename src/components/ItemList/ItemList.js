@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Item from '../Item/item';
 import { changeItemStyle } from '../../redux_local/actions';
 import './itemList.css';
@@ -10,12 +10,23 @@ const mapStateToProps = state => {
     return {items: aux};
 };
 
-export class ItemList extends React.Component {
-    render() {
-        let {items, dispatch} = this.props;
+const ItemListTemplate = (props) => {
+        let {items, dispatch} = props;
         items = items.itemsById;
         let lex = [];
         Object.values(items).forEach((item) => lex.push(item));
+        useEffect(() => {
+            let title = false;
+            const interval = setInterval(() => {
+                    if (title) {
+                        document.title = `(${lex.length}) items are in the list!`;
+                    } else {
+                        document.title = props.documentTitle;
+                    }
+                    title = !title;
+                }, 1000);
+                return () => {window.clearInterval(interval)}
+            });
         return (
             <>
                 <AddItem/>
@@ -30,16 +41,14 @@ export class ItemList extends React.Component {
                                     handleClick={(event) => {
                                         dispatch(changeItemStyle(item.id, event));
                                     }}
-                                    {...this.props.actions} />
+                                    {...props.actions} />
                             )
                         })
                     }
                 </ul>
             </>
         );
-    }
+};
 
-}
-
-const List = connect(mapStateToProps)(ItemList);
+const List = connect(mapStateToProps)(ItemListTemplate);
 export default List;
