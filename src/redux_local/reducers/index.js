@@ -26,17 +26,17 @@ const initialState = {
 export default function items(state = initialState, action) {
     switch (action.type) {
         case types.ADD_ITEM:
-            const newId = state.items[state.items.length - 1] + 1;
+            const newId = (state.items.length === 0 ) ? 1 : state.items[state.items.length - 1] + 1;
             return {
                 items: state.items.concat(newId),
-                itemsById: {
+                itemsById: [
                     ...state.itemsById,
-                    [newId]: {
+                    {
                         id: newId,
                         title: action.title,
                         style: action.style
                     }
-                }
+                ]
             };
 
         case types.REMOVE_ITEM:

@@ -1,0 +1,19 @@
+.smallDiv {
+    width: 5em;
+    padding: 4px 0;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+.inline {
+    display: inline;
+}
+
+.smallButton {
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+}

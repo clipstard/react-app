@@ -6,10 +6,9 @@ import { Toggle } from './toggle';
 import { Clock } from './clock';
 import { Provider } from 'react-redux';
 import * as reducers from './redux_local/reducers';
-import { bindActionCreators, combineReducers } from 'redux';
+import { combineReducers } from 'redux';
 import { createStore } from 'redux';
-import ItemList from './components/ItemList';
-import * as ItemActions from './redux_local/actions';
+import ItemList from './components/ItemList/ItemList';
 
 const themes = {
     light: {
@@ -49,6 +48,7 @@ class App extends React.Component {
                         <img src={logo} className="App-logo" alt="logo"/>
                         <Clock play={this.state.toggleState}/>
                         <Toggle onToggleChange={this.handleToggleChange}/>
+                        <br />
                         <Provider store={store}>
                             { <ItemList />}
                         </Provider>
