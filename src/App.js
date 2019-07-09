@@ -25,6 +25,7 @@ const reducer = combineReducers(reducers);
 const store = createStore(reducer);
 const theme = React.createContext(themes.light);
 class App extends React.Component {
+    title = document.title;
     constructor(props) {
         super(props);
         this.handleToggleChange = this.handleToggleChange.bind(this);
@@ -42,7 +43,6 @@ class App extends React.Component {
     }
 
     render() {
-        const documentTitle = document.title;
         return (
                 <div className="App" style={{backgroundColor: this.state.theme.backgroundColor, color: this.state.theme.color}}>
                     <header>
@@ -51,7 +51,7 @@ class App extends React.Component {
                         <Toggle onToggleChange={this.handleToggleChange}/>
                         <br />
                         <Provider store={store}>
-                            { <ItemList documentTitle={documentTitle}/>}
+                            { <ItemList documentTitle={this.title} canFlashTitle={this.state.toggleState}/>}
                         </Provider>
                     </header>
                 </div>

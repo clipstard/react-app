@@ -18,7 +18,7 @@ const ItemListTemplate = (props) => {
         useEffect(() => {
             let title = false;
             const interval = setInterval(() => {
-                    if (title) {
+                    if (title && props.canFlashTitle) {
                         document.title = `(${lex.length}) items are in the list!`;
                     } else {
                         document.title = props.documentTitle;
